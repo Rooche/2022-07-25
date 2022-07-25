@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <style>
+    .checked{ background-color: blue;}
+  </style>
+</head>
+<body>
+  <input id ="content"><button id="btn">등록</button>
+  <ul id="list">
+    <li>dddd</li>
+    <li>aaaa</li>
+  </ul>
+  <script>
+    //
+$(function(){
+//  $("li").on("click", function(){ //부모태그에 이벤트를 걸면 각각 이벤트 걸 필요가 없다
+  $("ul").on("click", 'li', function(){ // 직접 <=> 그룹(위임(부모))
+        
+    
+        $(this).toggleClass("checked"); //이벤트 타겟
+      })
+
+/*     $('#btn').on("click",function(){
+        //input 태그의 값으로 li태그로 생성해서 ul태그에 append
+        let li = $(`<li>${$('#content').val()}</li>`)
+        $("#list").append(li);
+      })
+    })*/
+    
+    $(function(){
+      $('#btn').on("click",function(){
+        //input 태그의 값으로 li태그로 생성해서 ul태그에 append
+        let content = $('#content').val()
+        let li = $("<li>") // <li> </li>
+        li.html(content)
+        $("#list").append(li);
+        $("#content").val("")
+
+    /*    let content = $('#content').val()
+        $("<li>").html(content).appendTo("#list") //앞에가 자식 뒤에가 부모.. id가 list인거에 content를 append한다
+        $("#list").append(("<li>").html(content));
+        $("content").val(""); */
+      });
+    })
+}) 
+  </script>
+</body>
+</html>
